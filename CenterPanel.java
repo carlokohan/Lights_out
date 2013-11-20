@@ -88,22 +88,22 @@ public class CenterPanel extends JPanel implements ActionListener{
 
 						if(x1 >= 0){
 							this.button[x1][y1].reverseColor();
-							this.button[x1][y1].reverseSwitch();
+							//this.button[x1][y1].reverseSwitch();
 						}
 
 						if(y2 >= 0){
 							this.button[x2][y2].reverseColor();
-							this.button[x2][y2].reverseSwitch();
+							//this.button[x2][y2].reverseSwitch();
 						}
 
 						if(y3 < 5){
 							this.button[x3][y3].reverseColor();
-							this.button[x3][y3].reverseSwitch();
+							//this.button[x3][y3].reverseSwitch();
 						}
 
 						if(x4 < 5){
 							this.button[x4][y4].reverseColor();
-							this.button[x4][y4].reverseSwitch();
+							//this.button[x4][y4].reverseSwitch();
 						}
 						/*
 						* We immediately get out of the 2-level for-loop because we already
@@ -121,7 +121,8 @@ public class CenterPanel extends JPanel implements ActionListener{
 		int i=0,j=0;
 		for(i=0;i<5;i++){
 			for(j=0;j<5;j++){
-				if(!button[i][j].isOn()){
+				//if(button[i][j].isOn()){
+				if(button[i][j].getColor().equals(Color.yellow)){
 					return;
 				}
 			}

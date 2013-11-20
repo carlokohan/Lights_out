@@ -25,7 +25,6 @@ public class Bulb{
 	Color blind = Color.yellow;
 
 	public Bulb(int x, int y){
-		super();
 		this.light = new JButton();
 		this.x = x;
 		this.y = y;
