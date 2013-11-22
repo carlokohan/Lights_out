@@ -6,11 +6,10 @@
 *	Simple implementation of lights out game using java
 *
 *	To run: compile all java files then run "Tester.java"
-*/
-
-/**
-*	This is the LightsGUI class
-*	This contains the frame needed for the program
+*
+*
+*	This is the CenterPanel class
+*	This contains the 5x5 grid for the game
 *	References: my Cmsc 22 exercises and Java API from Oracle
 */
 
@@ -69,8 +68,6 @@ public class CenterPanel extends JPanel implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e){
-		int x1,x2,x3,x4;	//this will contain the coordinates of the other 4
-		int y1,y2,y3,y4;	//Bulbs that could be turned off when one button is clicked
 		boolean found = false;
 
 		//a 2-level for-loop will check if the source of the event is from that bulb
@@ -78,33 +75,9 @@ public class CenterPanel extends JPanel implements ActionListener{
 			if(!found){
 				for(int j=0;j<5;j++){
 					if(e.getSource() == this.button[i][j].light){
-						this.button[i][j].reverseColor();
-						this.button[i][j].reverseSwitch();
-
-						x1 = i-1; y1 = j;	//there will be a maximum of 4 Bulbs that
-						x2 = i; y2 = j-1;	//might be affected
-						x3 = i; y3 = j+1;
-						x4 = i+1; y4 = j;
-
-						if(x1 >= 0){
-							this.button[x1][y1].reverseColor();
-							//this.button[x1][y1].reverseSwitch();
-						}
-
-						if(y2 >= 0){
-							this.button[x2][y2].reverseColor();
-							//this.button[x2][y2].reverseSwitch();
-						}
-
-						if(y3 < 5){
-							this.button[x3][y3].reverseColor();
-							//this.button[x3][y3].reverseSwitch();
-						}
-
-						if(x4 < 5){
-							this.button[x4][y4].reverseColor();
-							//this.button[x4][y4].reverseSwitch();
-						}
+						//call to switch off the button and turn off the lights of other bulb
+						this.switchOff(i,j,button);
+						
 						/*
 						* We immediately get out of the 2-level for-loop because we already
 						* found the Bulb that triggered the event.
@@ -130,6 +103,43 @@ public class CenterPanel extends JPanel implements ActionListener{
 
 		if(i == 5 && j == 5){
 			JOptionPane.showMessageDialog(null,"You Won!");
+		}
+	}
+	
+	
+	/**
+	* Function switches off the bulb and the surrounding bulbs
+	*/
+	public void switchOff(int i, int j, Bulb tile[][]){
+		int x1,x2,x3,x4;	//this will contain the coordinates of the other 4
+		int y1,y2,y3,y4;	//Bulbs that could be turned off when one button is clicked
+		
+		tile[i][j].reverseColor();
+		tile[i][j].reverseSwitch();
+	
+		x1 = i-1; y1 = j;	//there will be a maximum of 4 Bulbs that
+		x2 = i; y2 = j-1;	//might be affected
+		x3 = i; y3 = j+1;
+		x4 = i+1; y4 = j;
+
+		if(x1 >= 0){
+			tile[x1][y1].reverseColor();
+			//this.button[x1][y1].reverseSwitch();
+		}
+
+		if(y2 >= 0){
+			tile[x2][y2].reverseColor();
+			//this.button[x2][y2].reverseSwitch();
+		}
+
+		if(y3 < 5){
+			tile[x3][y3].reverseColor();
+			//this.button[x3][y3].reverseSwitch();
+		}
+
+		if(x4 < 5){
+			tile[x4][y4].reverseColor();
+			//this.button[x4][y4].reverseSwitch();
 		}
 	}
 }

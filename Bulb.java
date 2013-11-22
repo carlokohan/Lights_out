@@ -71,4 +71,6 @@ public class Bulb{
 	public boolean isOn(){
 		return this.switchedOn;
 	}
+	
+	
 }
